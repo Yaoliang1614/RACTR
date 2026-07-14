@@ -1,4 +1,6 @@
-# RACTR
+# Robust and Anisotropic Continuous Tensor Recovery via Structural Topology and Nonconvex Residual Reweighting (RACTR)
+Our code will be available once accepted. The following contexts are some details of our paper.
+
 ### 💻 Implementation Details
 
 #### 1. Hardware & Software Environment
@@ -6,11 +8,21 @@ All experiments and codes were implemented and evaluated on a desktop platform e
 * **IDE**: PyCharm
 * **GPU**: NVIDIA RTX 4060 Ti
 * **VRAM**: 8 GB
+##### 1.1 **Neural networks** 
+
+* Layer = 6
+* HIDDEN_DIM = 256
+* NUM_LAYERS = 6
+* NUM_FREQS = 256
+* ITERATIONS = 4000
+* BATCH_SIZE = 8192
+
+
 
 #### 2. Hyperparameter Settings
-The RACTR model is designed to be concise, requiring the adjustment of only two hyperparameters: `s` and `α`. For all evaluated tasks, the search space for these parameters is defined as follows:
-* **Scale Parameter (`\k`)**: {1, 5, 10, 15}
-* **Weight Parameter (`α`)**: {0.05, 0.1, 0.5, 1, 5}
+The RACTR model is designed to be concise, requiring the adjustment of only two hyperparameters: `k` and `α`. For all evaluated tasks, the search space for these parameters is defined as follows:
+* **Scale Parameter (`k`)**: {1, 5, 10, 15}
+* **Nonconvex Parameter (`α`)**: {0.05, 0.1, 0.5, 1, 5}
 
 #### 3. Penalty Function Configuration
 * **Main Configuration**: For the sake of conciseness and to comprehensively demonstrate the superiority of the RACTR model, the **Geman function** is utilized as the default penalty function in our primary experiments.
@@ -19,7 +31,7 @@ The RACTR model is designed to be concise, requiring the adjustment of only two 
 ----------------------------------------------
 ### 📦 Data Loading Requirements
 
-This repository contains two core tasks: **TRPCA (Tensor Denoising)** and **TC+TRPCA (Joint Tensor Completion and Denoising)**. Before running the algorithms, please ensure that your loaded dataset contains the corresponding variables described below:
+This repository  shows two core tasks: **Denoising (TRPCA)** and **Robust completion (Joint Tensor Completion and RPCA)**. Before running the algorithms, please ensure that your loaded dataset contains the corresponding variables described below:
 
 #### 1. TRPCA Task (Pure Denoising)
 For the standard tensor denoising task, you need to load both the fully observed noisy data and the clean data for evaluation.
@@ -47,7 +59,7 @@ This section presents the quantitative evaluation results of TRPCA (Tensor Robus
 
 ### 1. TRPCA 
 
-In the single denoising task, all experiments adopt `gm` (Geman-McClure) as FAMILY parameter。
+In the single denoising task, all experiments adopt `gm` (Geman) as FAMILY parameter。
 
 | Dataset | SR | SCALE | PARAM | MPSNR (dB) | MSSIM |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -60,23 +72,18 @@ In the single denoising task, all experiments adopt `gm` (Geman-McClure) as FAMI
 | **Pavia** | 0.4 | 10.0 | 0.50 | 43.33 | 0.9949 |
 | | 0.5 | 10.0 | 0.50 | 41.93 | 0.9931 |
 | | 0.6 | 10.0 | 0.50 | 39.07 | 0.9872 |
-| **HOuston** | 0.4 | 10.0 | 0.50 | 48.30 | 0.9977 |
-| | 0.5 | 10.0 | 0.50 | 48.68 | 0.9967 |
-| | 0.6 | 10.0 | 0.10 | 46.61 | 0.9967 |
 | **Flowers** | 0.4 | 10.0 | 0.50 | 42.33 | 0.9835 |
 | | 0.5 | 10.0 | 0.10 | 41.41 | 0.9806 |
 | | 0.6 | 10.0 | 0.10 | 40.43 | 0.9774 |
-| **Toys** | 0.4 | 10.0 | 0.10 | 42.26 | 0.9873 |
-| | 0.5 | 10.0 | 0.10 | 41.53 | 0.9857 |
-| | 0.6 | 10.0 | 0.10 | 39.50 | 0.9822 |
 
-### 2. (TC+TRPCA)
+
+### 2. (Robust completion)
 
 The joint task tested the robustness of the algorithm under different ratios of sampling ratio (SR) and Noise Ratio (NR). The FAMILY parameter was kept as `gm`。
 
 | Dataset | (SR+NR) | SCALE | PARAM | MPSNR (dB) | MSSIM |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **DCmall** | 0.3SR + 0.1NR | 5.0 | 1.00 | 44.49 | 0.9956 |
+| **WDC** | 0.3SR + 0.1NR | 5.0 | 1.00 | 44.49 | 0.9956 |
 | | 0.2SR + 0.3NR | 5.0 | 0.50 | 42.41 | 0.9924 |
 | | 0.1SR + 0.5NR | 5.0 | 0.10 | 35.94 | 0.9718 |
 | **Urban** | 0.3SR + 0.1NR | 10.0 | 5.00 | 43.11 | 0.9928 |
