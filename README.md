@@ -98,5 +98,5 @@ Based on the above quantitative indicators, the following objective evaluation c
 
 #### (Strengths)
 * **Excellent Structure Preservation**: Under the vast majority of test conditions, the MSSIM remains stably **above 0.98**. This indicates that the algorithm perfectly preserves core structural information, such as textures and edges, during the denoising or joint reconstruction processes.
-* **High Compatibility with Hyperspectral/Remote Sensing Data**: Under extremely high noise conditions (0.4~0.6), the algorithm still maintains an exceptionally high MPSNR of **46dB-48dB** on datasets like `HOuston`. The low-rank prior of the model demonstrates strong adaptability to the intrinsic spatial and spectral correlations of such data.
+* **High Compatibility with Hyperspectral/Remote Sensing Data**: Under extremely high noise conditions (0.4~0.6), the algorithm still maintains an exceptionally high MPSNR of **39.07dB-43.33dB** on datasets like `Pavia`. This demonstrates strong adaptability to the intrinsic spatial and spectral correlations of such data.
 * **High Robustness Against Noise**: In the single denoising task, the performance exhibits a linear decay consistent with physical intuition as the noise intensity increases, without encountering any sudden model collapse.
