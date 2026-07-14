@@ -72,7 +72,7 @@ In the single denoising task, all experiments adopt `gm` (Geman-McClure) as FAMI
 
 ### 2. (TC+TRPCA)
 
-The joint task tested the robustness of the algorithm under different ratios of Super-Resolution (SR) and Noise Reduction (NR). The FAMILY parameter was kept as `gm`。
+The joint task tested the robustness of the algorithm under different ratios of sampling ratio (SR) and Noise Ratio (NR). The FAMILY parameter was kept as `gm`。
 
 | Dataset | (SR+NR) | SCALE | PARAM | MPSNR (dB) | MSSIM |
 | :--- | :--- | :--- | :--- | :--- | :--- |
