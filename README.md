@@ -9,7 +9,7 @@ All experiments and codes were implemented and evaluated on a desktop platform e
 
 #### 2. Hyperparameter Settings
 The RACTR model is designed to be concise, requiring the adjustment of only two hyperparameters: `s` and `α`. For all evaluated tasks, the search space for these parameters is defined as follows:
-* **Scale Parameter (`s`)**: {1, 5, 10, 15}
+* **Scale Parameter (`\k`)**: {1, 5, 10, 15}
 * **Weight Parameter (`α`)**: {0.05, 0.1, 0.5, 1, 5}
 
 #### 3. Penalty Function Configuration
