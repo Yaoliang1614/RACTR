@@ -1,5 +1,5 @@
 # Robust and Anisotropic Continuous Tensor Recovery via Structural Topology and Nonconvex Residual Reweighting (RACTR)
-Our code will be available during these days. The following contexts are some details of our paper.
+### Our code will be available during these days (before November 20th). The following contexts are some details of our paper.
 
 ### 💻 Implementation Details
 
@@ -10,10 +10,13 @@ All experiments and codes were implemented and evaluated on a desktop platform e
 * **VRAM**: 8 GB
 ##### 1.1 **Neural networks** 
 
-* Layer = 6
-* HIDDEN_DIM = 256
+
+* HIDDEN_DIM_xy = 256
+* HIDDEN_DIM_z = 64
 * NUM_LAYERS = 6
 * NUM_FREQS = 128
+* R = 256
+* LR = 0.001
 * ITERATIONS = 4000
 * BATCH_SIZE = 8192
 
