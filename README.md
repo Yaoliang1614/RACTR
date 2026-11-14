@@ -1,5 +1,5 @@
 # Robust and Anisotropic Continuous Tensor Recovery via Structural Topology and Nonconvex Residual Reweighting (RACTR)
-Our code will be available once accepted. The following contexts are some details of our paper.
+Our code will be available during these days. The following contexts are some details of our paper.
 
 ### 💻 Implementation Details
 
@@ -13,7 +13,7 @@ All experiments and codes were implemented and evaluated on a desktop platform e
 * Layer = 6
 * HIDDEN_DIM = 256
 * NUM_LAYERS = 6
-* NUM_FREQS = 256
+* NUM_FREQS = 128
 * ITERATIONS = 4000
 * BATCH_SIZE = 8192
 
@@ -52,51 +52,3 @@ In the joint task, the observed data is not only corrupted by noise but also suf
 
 > **⚠️ Note:**
 > Please ensure that the spatial and spectral dimensions of `X`, `Xn` (or `Xmiss`), and the `sampling_mask` are **strictly identical**. Otherwise, dimension mismatch errors will occur during tensor operations.
--------------------------------------------------------------
-## 📊 (Experimental Results)
-
-This section presents the quantitative evaluation results of TRPCA (Tensor Robust Principal Component Analysis) and its combined task (TC+TRPCA) on different datasets under various noise and missing data conditions. The main evaluation metrics include Mean Peak Signal-to-Noise Ratio (MPSNR) and Mean Structural Similarity Index Measure (MSSIM).
-
-### 1. TRPCA 
-
-In the single denoising task, all experiments adopt `gm` (Geman) as FAMILY parameter。
-
-| Dataset | SR | SCALE | PARAM | MPSNR (dB) | MSSIM |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Carphone** | 0.1 | 5.0 | 0.10 | 42.58 | 0.9959 |
-| | 0.2 | 10.0 | 0.05 | 40.40 | 0.9920 |
-| | 0.3 | 5.0 | 0.10 | 37.26 | 0.9740 |
-| **Akiyo** | 0.1 | 5.0 | 0.10 | 44.57 | 0.9963 |
-| | 0.2 | 5.0 | 0.10 | 40.68 | 0.9926 |
-| | 0.3 | 5.0 | 0.10 | 38.84 | 0.9878 |
-| **Pavia** | 0.4 | 10.0 | 0.50 | 43.33 | 0.9949 |
-| | 0.5 | 10.0 | 0.50 | 41.93 | 0.9931 |
-| | 0.6 | 10.0 | 0.50 | 39.07 | 0.9872 |
-| **Flowers** | 0.4 | 10.0 | 0.50 | 42.33 | 0.9835 |
-| | 0.5 | 10.0 | 0.10 | 41.41 | 0.9806 |
-| | 0.6 | 10.0 | 0.10 | 40.43 | 0.9774 |
-
-
-### 2. (Robust completion)
-
-The joint task tested the robustness of the algorithm under different ratios of sampling ratio (SR) and Noise Ratio (NR). The FAMILY parameter was kept as `gm`。
-
-| Dataset | (SR+NR) | SCALE | PARAM | MPSNR (dB) | MSSIM |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **WDC** | 0.3SR + 0.1NR | 5.0 | 1.00 | 44.49 | 0.9956 |
-| | 0.2SR + 0.3NR | 5.0 | 0.50 | 42.41 | 0.9924 |
-| | 0.1SR + 0.5NR | 5.0 | 0.10 | 35.94 | 0.9718 |
-| **Urban** | 0.3SR + 0.1NR | 10.0 | 5.00 | 43.11 | 0.9928 |
-| | 0.2SR + 0.3NR | 10.0 | 0.50 | 39.65 | 0.9857 |
-| | 0.1SR + 0.5NR | 5.0 | 0.10 | 32.44 | 0.9468 |
-
----
-
-### 💡 Performance Analysis
-
-Based on the above quantitative indicators, the following objective evaluation conclusions are drawn:
-
-#### (Strengths)
-* **Excellent Structure Preservation**: Under the vast majority of test conditions, the MSSIM remains stably **above 0.98**. This indicates that the algorithm perfectly preserves core structural information, such as textures and edges, during the denoising or joint reconstruction processes.
-* **High Compatibility with Hyperspectral/Remote Sensing Data**: Under extremely high noise conditions (0.4~0.6), the algorithm still maintains an exceptionally high MPSNR of **39.07dB-43.33dB** on datasets like `Pavia`. This demonstrates strong adaptability to the intrinsic spatial and spectral correlations of such data.
-* **High Robustness Against Noise**: In the single denoising task, the performance exhibits a linear decay consistent with physical intuition as the noise intensity increases, without encountering any sudden model collapse.
