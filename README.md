@@ -16,7 +16,7 @@ All experiments and codes were implemented and evaluated on a desktop platform e
 * NUM_LAYERS = 6
 * NUM_FREQS = 128
 * R = 256
-* LR = 0.001
+* LR = 0.001 (for sparse denoising)
 * ITERATIONS = 4000
 * BATCH_SIZE = 8192
 
@@ -34,11 +34,19 @@ The RACTR model is designed to be concise, requiring the adjustment of only two 
 ----------------------------------------------
 ### 📦 Data Loading Requirements
 
-This repository  shows two core tasks: **Denoising (TRPCA)** and **Robust completion (Joint Tensor Completion and RPCA)**. Before running the algorithms, please ensure that your loaded dataset contains the corresponding variables described below:
+This repository  shows multiple tasks: **Gaussian Denoising**, **Sparse Denoising (TRPCA)** and **Robust completion (Joint Tensor Completion and RPCA)**. Before running the algorithms, please ensure that your loaded dataset contains the corresponding variables described below:
 
-#### 1. TRPCA Task (Pure Denoising)
+#### 1. Gaussian Denoising task (Dense noising)
 For the standard tensor denoising task, you need to load both the fully observed noisy data and the clean data for evaluation.
+| penalty: L2 loss
+| Variable | Type / Shape | Description & Meaning |
+| :--- | :--- | :--- |
+| `X` | Tensor / Matrix | **Ground Truth (Clean Data)**. Serves as the baseline reference and is used exclusively for calculating final evaluation metrics (e.g., MPSNR, MSSIM). |
+| `Xn` | Tensor / Matrix | **Noisy Observation**. The actual input tensor for the algorithm, corrupted by an unknown noise distribution. |
 
+#### 2. TRPCA Task (Sparse Denoising)
+For the standard tensor denoising task, you need to load both the fully observed noisy data and the clean data for evaluation.
+| penalty: Geman loss
 | Variable | Type / Shape | Description & Meaning |
 | :--- | :--- | :--- |
 | `X` | Tensor / Matrix | **Ground Truth (Clean Data)**. Serves as the baseline reference and is used exclusively for calculating final evaluation metrics (e.g., MPSNR, MSSIM). |
@@ -46,7 +54,6 @@ For the standard tensor denoising task, you need to load both the fully observed
 
 #### 2. TC+TRPCA Joint Task (Completion + Denoising)
 In the joint task, the observed data is not only corrupted by noise but also suffers from missing entries (undersampled), which requires the introduction of a masking mechanism.
-
 | Variable | Type / Shape | Description & Meaning |
 | :--- | :--- | :--- |
 | `X` | Tensor / Matrix | **Ground Truth (Clean Data)**. The perfect reference used for metric evaluation. |
