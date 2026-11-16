@@ -1,6 +1,4 @@
-# Robust and Anisotropic Continuous Tensor Recovery via Structural Topology and Nonconvex Residual Reweighting (RACTR)
-### Our code will be available during these days (before November 20th). The following contexts are some details of our paper.
-
+# Robust and Anisotropic Continuous Tensor Recovery via Structural Topology and Nonconvex Residual Reweighting (RACTR, submitted to Pattern recognition, under review in Major revision)
 ### 💻 Implementation Details
 
 #### 1. Hardware & Software Environment
