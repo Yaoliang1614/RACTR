@@ -16,7 +16,7 @@ All experiments and codes were implemented and evaluated on a desktop platform e
 * NUM_LAYERS = 6
 * NUM_FREQS = 128
 * R = 256
-* LR = 0.001 (for sparse denoising)
+* LR = 0.001 (for sparse denoising and robust tensor completion)
 * ITERATIONS = 4000
 * BATCH_SIZE = 8192
 
